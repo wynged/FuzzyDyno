@@ -15,6 +15,7 @@ namespace FuzzyDyno
     {
         /// <summary>
         /// Fuzzy string comparison betwee two strings using the JaroWinkler algorithm. 
+        /// Well suited to short string
         /// Returns 1 if the strings are identical.
         /// </summary>
         /// <param name="str1"></param>
@@ -25,6 +26,22 @@ namespace FuzzyDyno
             double value = FuzzyString.ComparisonMetrics.JaroWinklerDistance(str1, str2);
             return value;
         }
+
+
+
+        /// <summary>
+        /// Get the closest match, to a given string, from a list of strings.
+        /// </summary>
+        /// <param name="str1"></param>
+        /// <param name="strings"></param>
+        /// <returns>a string matching</returns>
+        public static string GetBestMatch(string str1, List<string> strings )
+        {
+            List<double> distances = strings.Select(x => FuzzyString.ComparisonMetrics.JaroWinklerDistance(str1, x)).ToList();
+            int ind = distances.IndexOf(distances.Max());
+            return strings[ind];
+        }
+
 
 
     }

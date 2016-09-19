@@ -53,7 +53,9 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="Resources\FuzzyDyno.FuzzyStringComparisons.GetBestMatch.Large.png" />
     <Content Include="Resources\FuzzyDyno.FuzzyStringComparisons.CompareTwoStrings.Large.png" />
+    <Content Include="Resources\FuzzyDyno.FuzzyStringComparisons.GetBestMatch.Small.png" />
     <Content Include="Resources\FuzzyDyno.FuzzyStringComparisons.CompareTwoStrings.Small.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
