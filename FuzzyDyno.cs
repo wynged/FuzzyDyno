@@ -20,9 +20,15 @@ namespace FuzzyDyno
         /// </summary>
         /// <param name="str1"></param>
         /// <param name="str2"></param>
+        /// <param name="ignoreCase"></param>
         /// <returns>A value between 0 and 1</returns>
-        public static double CompareTwoStrings(string str1, string str2)
+        public static double CompareTwoStrings(string str1, string str2, bool ignoreCase = true)
         {
+            if (ignoreCase)
+            {
+                str1 = str1.ToLower();
+                str2 = str2.ToLower();
+            }
             double value = FuzzyString.ComparisonMetrics.JaroWinklerDistance(str1, str2);
             return value;
         }

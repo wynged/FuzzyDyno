@@ -78,4 +78,7 @@
     <GenerateResource UseSourcePath="true" Sources="$(ProjectDir)\Resources\FuzzyDynoImages.resx" OutputResources="$(ProjectDir)\Resources\FuzzyDynoImages.resources" References="$(FrameworkAssembliesPath)System.Drawing.dll" />
     <AL TargetType="library" EmbedResources="$(ProjectDir)\Resources\FuzzyDynoImages.resources" OutputAssembly="$(OutDir)FuzzyDyno.customization.dll" Version="%(AssemblyInfo.Version)" />
   </Target>
+  <PropertyGroup>
+    <PostBuildEvent>if $(ConfigurationName) == Debug xcopy $(TargetPath) "C:\Users\erudisaile\AppData\Roaming\Dynamo\Dynamo Revit\1.1\packages\FuzzyDyno\bin\" /s /y</PostBuildEvent>
+  </PropertyGroup>
 </Project>
