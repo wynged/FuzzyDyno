@@ -15,14 +15,14 @@ namespace FuzzyDyno
     {
         /// <summary>
         /// Fuzzy string comparison betwee two strings using the JaroWinkler algorithm. 
-        /// Well suited to short string
+        /// Has problems if strings have repeat letters
         /// Returns 1 if the strings are identical.
         /// </summary>
         /// <param name="str1"></param>
         /// <param name="str2"></param>
         /// <param name="ignoreCase"></param>
         /// <returns>A value between 0 and 1</returns>
-        public static double CompareTwoStrings(string str1, string str2, bool ignoreCase = true)
+        public static double JaroWinkler(string str1, string str2, bool ignoreCase = false)
         {
             if (ignoreCase)
             {
@@ -33,6 +33,43 @@ namespace FuzzyDyno
             return value;
         }
 
+        /// <summary>
+        /// Fuzzy string comparison betwee two strings using the Jaccard Index. 
+        /// Returns 1 if the strings are identical.
+        /// </summary>
+        /// <param name="str1"></param>
+        /// <param name="str2"></param>
+        /// <param name="ignoreCase"></param>
+        /// <returns>A value between 0 and 1</returns>
+        public static double JaccardIndex(string str1, string str2, bool ignoreCase = false)
+        {
+            if (ignoreCase)
+            {
+                str1 = str1.ToLower();
+                str2 = str2.ToLower();
+            }
+            double value = FuzzyString.ComparisonMetrics.JaccardIndex(str1, str2);
+            return value;
+        }
+
+        /// <summary>
+        /// Fuzzy string comparison betwee two strings using the Jaccard Index. 
+        /// Returns 1 if the strings are identical.
+        /// </summary>
+        /// <param name="str1"></param>
+        /// <param name="str2"></param>
+        /// <param name="ignoreCase"></param>
+        /// <returns>A value between 0 and 1</returns>
+        public static double LevenshteinDistance(string str1, string str2, bool ignoreCase = false)
+        {
+            if (ignoreCase)
+            {
+                str1 = str1.ToLower();
+                str2 = str2.ToLower();
+            }
+            double value = FuzzyString.ComparisonMetrics.LevenshteinDistance(str1, str2);
+            return value;
+        }
 
 
         /// <summary>
@@ -43,7 +80,7 @@ namespace FuzzyDyno
         /// <returns>a string matching</returns>
         public static string GetBestMatch(string str1, List<string> strings )
         {
-            List<double> distances = strings.Select(x => FuzzyString.ComparisonMetrics.JaroWinklerDistance(str1, x)).ToList();
+            List<double> distances = strings.Select(x => FuzzyString.ComparisonMetrics.JaccardIndex(str1, x)).ToList();
             int ind = distances.IndexOf(distances.Max());
             return strings[ind];
         }
