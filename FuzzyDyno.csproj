@@ -83,6 +83,6 @@
     <AL TargetType="library" EmbedResources="$(ProjectDir)\Resources\FuzzyDynoImages.resources" OutputAssembly="$(OutDir)FuzzyDyno.customization.dll" Version="%(AssemblyInfo.Version)" />
   </Target>
   <PropertyGroup>
-    <PostBuildEvent>if $(ConfigurationName) == Debug xcopy $(TargetPath) "C:\Users\erudisaile\AppData\Roaming\Dynamo\Dynamo Revit\1.2\packages\FuzzyDyno\bin\" /s /y</PostBuildEvent>
+    <PostBuildEvent>if $(ConfigurationName) == Debug xcopy $(TargetDir)*.dll "C:\Users\erudisaile\AppData\Roaming\Dynamo\Dynamo Revit\1.2\packages\FuzzyDyno\bin\" /s /y</PostBuildEvent>
   </PropertyGroup>
 </Project>
