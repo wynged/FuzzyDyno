@@ -77,12 +77,18 @@ namespace FuzzyDyno
         /// </summary>
         /// <param name="str1"></param>
         /// <param name="strings"></param>
-        /// <returns>a string matching</returns>
-        public static string GetBestMatch(string str1, List<string> strings )
+        /// <returns>Best strings</returns>
+        public static List<string> GetBestMatch(string str1, List<string> strings )
         {
-            List<double> distances = strings.Select(x => FuzzyString.ComparisonMetrics.JaccardIndex(str1, x)).ToList();
-            int ind = distances.IndexOf(distances.Max());
-            return strings[ind];
+            int bestLev = strings.Select(x => FuzzyString.ComparisonMetrics.LevenshteinDistance(str1, x)).Min();
+            List<string> best = strings.Where(x => FuzzyString.ComparisonMetrics.LevenshteinDistance(str1, x) == bestLev).ToList();
+            if (best.Count() > 1)
+            {
+                double bestJacc = best.Select(x => FuzzyString.ComparisonMetrics.JaccardIndex(str1, x)).Max();
+                best = best.Where(x => FuzzyString.ComparisonMetrics.JaccardIndex(str1, x) == bestJacc).ToList();
+            }
+
+            return best;
         }
 
 
