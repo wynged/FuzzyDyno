@@ -53,7 +53,7 @@ namespace FuzzyDyno
         }
 
         /// <summary>
-        /// Fuzzy string comparison betwee two strings using the Jaccard Index. 
+        /// Fuzzy string comparison betwee two strings using the LevenshteinDistance. 
         /// Returns 1 if the strings are identical.
         /// </summary>
         /// <param name="str1"></param>
